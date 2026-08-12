@@ -11,7 +11,7 @@ const config = {
   password: process.env.LOGIN_STANDARD_PASSWORD as string
 };
 
-test('Login test', async ({ page }) => {
+test('1001 - Login test', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto(config.baseUrl);
   await loginPage.enterUsername(config.username);
@@ -20,7 +20,7 @@ test('Login test', async ({ page }) => {
   await expect(page).toHaveURL(loginPage.expectedLandingUrl);
 });
 
-test('Logout test', async ({ page }) => {
+test('1002 - Logout test', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto(config.baseUrl);
   await loginPage.enterUsername(config.username);

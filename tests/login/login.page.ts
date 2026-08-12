@@ -38,18 +38,8 @@ export class LoginPage {
   }
 
   async selectMainHamburgerOption(optionName: string): Promise<void> {
-  
-    if (optionName === 'All Items') {
-      await this.page.getByRole('link', { name: optionName }).click();
-    } else if (optionName === 'About') {
-      await this.page.getByRole('link', { name: optionName }).click();
-    } else if (optionName === 'Logout') {
-      await this.page.getByRole('link', { name: optionName }).click();
-    } else if (optionName === 'Reset App State') {
-      await this.page.getByRole('link', { name: optionName }).click();      
-    } else {
-      console.warn('Warning: Menu option "$(optionName)" does not exist.' );
-    }
-  }
+    await this.page.getByRole('link', { name: optionName }).click();
+  } 
+ 
 }
 
