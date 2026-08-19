@@ -5,12 +5,14 @@ export class LoginPage {
   private readonly passwordInput: Locator;
   private readonly loginButton: Locator;
   private readonly mainHamburger: Locator;
+  public readonly lockedOutLoginMessage: Locator;
 
   constructor(private readonly page: Page) {
     this.usernameInput = page.getByRole('textbox', { name: 'Username' });
     this.passwordInput = page.getByRole('textbox', { name: 'Password' });
     this.loginButton = page.getByRole('button', { name: 'Login' });
     this.mainHamburger = page.getByRole('button', { name: 'Open Menu' });
+    this.lockedOutLoginMessage = page.locator('[data-test="error"]');
   }
 
   async goto(url: string): Promise<void> {
