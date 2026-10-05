@@ -40,7 +40,7 @@ export class LoginPage {
   }
 
   async selectMainHamburgerOption(optionName: string): Promise<void> {
-    await this.page.getByRole('link', { name: optionName }).click();
+    await this.page.getByText(optionName).click();
   } 
  
 }

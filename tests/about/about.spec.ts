@@ -2,7 +2,7 @@ import { test, expect } from '../fixtures';
 import { LoginPage } from '../login/login.page';
 import { AboutPage } from './about.page';
 
-test('1004 - Navigate to About screen', async ({ page }) => {
+test('1010 - Navigate to About screen', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const aboutPage = new AboutPage(page);
   await loginPage.clickMainHamburger();

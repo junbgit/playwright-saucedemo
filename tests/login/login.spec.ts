@@ -9,17 +9,6 @@ const config = {
   password: process.env.LOGIN_STANDARD_PASSWORD as string
 };
 
-// OPTION 3 - Centralized
-test('1000 - Verify that standard user can login successfully', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  await loginPage.goto(config.baseUrl);
-  await loginPage.enterUsername(config.username);
-  await loginPage.enterPassword(config.password);
-  await loginPage.clickLoginButton();
-  await expect(page).toHaveURL(URLS.landingPage); //OPTION3: This option stores all constants in a central area and also shows you
-  //the url value by hovering over .landingPage
-});
-
 // OPTION 1 - Encapsulated
 test('1001 - Verify that standard user can login successfully', async ({ page }) => {
   const loginPage = new LoginPage(page);
@@ -32,7 +21,7 @@ test('1001 - Verify that standard user can login successfully', async ({ page })
   //clear. You have to open the POM to find out what is being verified. The other option is to hardcode the URL here which is
 });
 
-// OPTION 1 - Hardcoded
+// OPTION 2 - Hardcoded
 test('1002 - Verify that standard user can logout successfully OPTION 2', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await loginPage.goto(config.baseUrl);
@@ -45,7 +34,28 @@ test('1002 - Verify that standard user can logout successfully OPTION 2', async 
   //This clearly shows what the test requirement is, that the url is https://www.saucedemo.com.
 });
 
-test('1003 - Verify that locked out user is not able to login', async ({ page }) => {
+// OPTION 3 - Centralized
+test('1003 - Verify that standard user can login successfully', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await loginPage.goto(config.baseUrl);
+  await loginPage.enterUsername(config.username);
+  await loginPage.enterPassword(config.password);
+  await loginPage.clickLoginButton();
+  await expect(page).toHaveURL(URLS.landingPage); //OPTION3: This option stores all constants in a central area (utils\constants) 
+  //It also shows you the url value by hovering over .landingPage
+});
+
+//
+test('1004 - Verify that standard user can login successfully using authentication', async ({ page }) => {
+  const loginPage = new LoginPage(page);  
+  await page.goto('/inventory.html');
+  await loginPage.clickMainHamburger();
+  await loginPage.selectMainHamburgerOption('Logout');
+   
+});
+
+
+test('1005 - Verify that locked out user is not able to login', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const expectedError = 'Epic sadface: Sorry, this user has been locked out.'
   await loginPage.goto(config.baseUrl);
@@ -54,3 +64,5 @@ test('1003 - Verify that locked out user is not able to login', async ({ page })
   await loginPage.clickLoginButton();
   await expect(loginPage.lockedOutLoginMessage).toContainText(expectedError);
 });
+
+

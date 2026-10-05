@@ -15,7 +15,7 @@ const config = {
 
 setup('authenticate', async ({ page }) => {
   const loginPage = new LoginPage(page);
-
+  
   await loginPage.goto(config.baseUrl);
   await loginPage.enterUsername(config.username);
   await loginPage.enterPassword(config.password);
